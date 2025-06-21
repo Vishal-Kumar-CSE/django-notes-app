@@ -2,6 +2,7 @@ pipeline{
     agent any;
     stages{
         stage("Code"){steps{
+	echo "Code stage"
             git url:"https://github.com/Vishal-Kumar-CSE/django-notes-app.git",branch:"main"
         }}
         stage("Build"){steps{
