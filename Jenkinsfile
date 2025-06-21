@@ -1,9 +1,11 @@
+@Library('my-shared-lib')_
+
 pipeline{
     agent any;
     stages{
         stage("Code"){steps{
 	echo "Code stage"
-            git url:"https://github.com/Vishal-Kumar-CSE/django-notes-app.git",branch:"main"
+	code_checkout("https://github.com/Vishal-Kumar-CSE/django-notes-app.git","main")
         }}
         stage("Build"){steps{
            sh "docker build -t notes-app2:latest ."
