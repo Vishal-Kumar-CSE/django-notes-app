@@ -12,6 +12,7 @@ pipeline{
         }}
         stage("Push to Dockerhub"){steps{
             docker_push("notes-app2", "latest")
+            
         //    withCredentials([usernamePassword(
         //        credentialsId:"DockerHubPat",
         //        usernameVariable:"DockerhubUser",
