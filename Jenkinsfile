@@ -8,7 +8,7 @@ pipeline{
 	code_checkout("https://github.com/Vishal-Kumar-CSE/django-notes-app.git","main")
         }}
         stage("Build"){steps{
-           sh "docker build -t notes-app2:latest ."
+            docker_build("notes-app2","latest","kmvishal")
         }}
         stage("Push to Dockerhub"){steps{
            withCredentials([usernamePassword(
