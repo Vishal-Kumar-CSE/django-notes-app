@@ -11,14 +11,15 @@ pipeline{
             docker_build("notes-app2","latest","kmvishal")
         }}
         stage("Push to Dockerhub"){steps{
-           withCredentials([usernamePassword(
-               credentialsId:"DockerHubPat",
-               usernameVariable:"DockerhubUser",
-               passwordVariable:"DockerhubPass")]){
-               sh "docker login -u ${env.DockerhubUser} -p ${env.DockerhubPass}"
-               sh "docker image tag notes-app2:latest ${env.DockerhubUser}/notes-app2:latest"
-               sh "docker push ${env.DockerhubUser}/notes-app2:latest"
-           }
+            docker_push("notes-app2", "latest")
+        //    withCredentials([usernamePassword(
+        //        credentialsId:"DockerHubPat",
+        //        usernameVariable:"DockerhubUser",
+        //        passwordVariable:"DockerhubPass")]){
+        //        sh "docker login -u ${env.DockerhubUser} -p ${env.DockerhubPass}"
+        //        sh "docker image tag notes-app2:latest ${env.DockerhubUser}/notes-app2:latest"
+        //        sh "docker push ${env.DockerhubUser}/notes-app2:latest"
+        //    }
         }}
         stage("Deploy"){steps{
             sh "date"
