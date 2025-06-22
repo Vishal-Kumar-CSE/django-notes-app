@@ -3,7 +3,8 @@
 pipeline{
     agent any;
     stages{
-        stage("Code"){steps{
+        stage("Code")
+        {steps{
 	echo "Code stage"
 	code_checkout("https://github.com/Vishal-Kumar-CSE/django-notes-app.git","main")
         }}
@@ -12,7 +13,7 @@ pipeline{
         }}
         stage("Push to Dockerhub"){steps{
             docker_push("notes-app2", "latest")
-            
+
         //    withCredentials([usernamePassword(
         //        credentialsId:"DockerHubPat",
         //        usernameVariable:"DockerhubUser",
@@ -23,8 +24,7 @@ pipeline{
         //    }
         }}
         stage("Deploy"){steps{
-            sh "date"
-            sh "docker compose down && docker compose up -d"
+           docker_compose()
         }}
 
     }
